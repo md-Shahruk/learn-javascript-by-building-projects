@@ -1,0 +1,23 @@
+body{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color:indigo;
+    color:white;
+    text-align: center;
+    margin-top: 100px;
+}
+
+input, button{
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.time{
+    font-size: 45px;
+    margin-top: 20px;
+    letter-spacing: 4px;
+}
+
+button{
+    cursor: pointer;
+}
