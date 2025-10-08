@@ -49,3 +49,20 @@ startbtn.addEventListener('click', ()=>{
   }, 1000);
 
 });
+
+// Pause button
+pausebtn.addEventListener('click', ()=>{
+  if(timer){
+    clearInterval(timer);
+    isPaused =  true;
+  }
+});
+
+// Reset button
+resetbtn.addEventListener('click', ()=>{
+  clearInterval(timer);
+  input.value = '';
+  display.textContent = '00:00:00';
+  isPaused = false;
+
+});
