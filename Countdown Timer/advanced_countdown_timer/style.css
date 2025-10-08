@@ -1,0 +1,214 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3a0ca3;
+  --accent: #f72585;
+  --dark: #212529;
+  --success: #4cc9f0;
+  --warning: #f8961e;
+  --danger: #e63946;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  color: rgb(236, 222, 222);
+  background: linear-gradient(135deg, #8661dc 0%, #268dac 100%);
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(234, 179, 179, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgb(234, 179, 179, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 2.2rem;
+  background: linear-gradient(to right, #fff, #dec2c2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.timer-display {
+  text-align: center;
+  margin: 30px 0;
+  position: relative;
+}
+.clock-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background: conic-gradient(#5862d6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 0 10px rgba(58, 22, 55, 0.3);
+}
+
+.clock-circle::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+}
+
+.time-text {
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.time-inputs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.time-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-input label {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.time-input input {
+  width: 80px;
+  padding: 10px;
+  border: none;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  outline: none;
+  transition: var(--transition);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20;
+}
+
+button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-start {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-pause {
+  background: var(--warning);
+  color: white;
+}
+
+.btn-reset {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+button:hover {
+  transform: translateY(3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY();
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.complete-message {
+        text-align: center;
+        margin-top: 20px;
+        padding: 15px;
+        background: #666fd8;
+        border-radius: var(--radius);
+        font-weight: 600;
+        display: none;
+        animation: pulse 1.5s infinite;
+      }
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (max-width: 500px) {
+        .container {
+          padding: 20px;
+        }
+
+        .clock-circle {
+          width: 180px;
+          height: 180px;
+        }
+
+        .time-text {
+          font-size: 2.5rem;
+        }
+
+        .time-input input {
+          width: 70px;
+          padding: 10px;
+        }
+
+        button {
+          padding: 12px 20px;
+          font-size: 0.9rem;
+        }
+      }
