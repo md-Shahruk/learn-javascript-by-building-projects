@@ -1,5 +1,9 @@
-##1. Countdown Timer
 
-# Screenshots:
-![SimpleCountdown](https://github.com/md-Shahruk/learn-javascript-by-building-projects/blob/main/picture/simple_countdown.png)
-![AdvancedCountdown](https://github.com/md-Shahruk/learn-javascript-by-building-projects/blob/main/picture/advancedcountdonw.png)
+## **[1. Countdown Timer](./Countdown%20Timer)**
+
+### 📸 Screenshots
+
+<p align="center">
+  <img src="./picture/simple_countdown.png" width="45%" />
+  <img src="./picture/advancedcountdonw.png" width="45%" />
+</p>
