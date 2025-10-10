@@ -131,7 +131,7 @@ function resultScreen() {
     
     finalScoreElement.textContent = `${score}/${quizQuestions.length}`;
     
-    // Set result message based on score
+    
     let message = '';
     if (score === quizQuestions.length) {
         message = "Perfect!";
