@@ -36,7 +36,7 @@ a **Simple Countdown Timer** and an **Advanced Countdown Timer**.
 
 
 
-## ***[2. Quiz App](./Quiz%20App)**
+## **[2. Quiz App](./Quiz%20App)**
 
 A interactive Generative AI quiz application that dynamically displays **multiple-choice questions, tracks user scores, and provides instant feedback**  all without any external frameworks.
 
@@ -55,7 +55,7 @@ A interactive Generative AI quiz application that dynamically displays **multipl
 ###  Screenshots
 
 <p align="center">
-  <img src="./picture/quiz01.png" width="45%" />
-  <img src="./picture/quiz02.png" width="45%" />
-  <img src="./picture/quiz03.png" width="45%">
+  <img src="./picture/quiz01.png" width="40%" />
+  <img src="./picture/quiz02.png" width="40%" />
+  <img src="./picture/quiz03.png" width="40%">
 </p>
