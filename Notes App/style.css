@@ -55,8 +55,8 @@ textarea{
     height: 180px;
 }
 
-button {
-    background-color: #c43109;
+#add-note  {
+    background-color: #12b7b4;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -65,12 +65,49 @@ button {
     font-size: 16px;
     
 }
-  button:hover {
-    transform: translateY(2px);
-    background-color: #ce6c51;
-}
 .notes-list {
     display: grid;
+    /*
+    auto-fill: automatically create columns according to available space.
+    minmax: column size range
+    */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
 }
+
+.note {
+    background-color: #fff;
+    border-left: 4px solid #3498db;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    position: relative;
+    
+}
+
+ .note h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    padding-right: 80px;
+}
+
+.note p {
+    color: #555;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    padding-right: 80px;
+}
+.delete-btn{
+    background-color: #bf270c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; 
+    position: absolute; 
+    top: 5px; 
+    right: 10px;
+}
+
