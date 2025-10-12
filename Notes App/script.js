@@ -6,6 +6,9 @@ const notesContainer = document.getElementById("notes-container");
 
 
 let notes = [];
+let editNoteId = null;
+
+// Add note function
 function addNote() {
   const title = noteTitle.value.trim();
   const content = noteContent.value.trim();
@@ -15,18 +18,38 @@ function addNote() {
     return;
   }
 
-  const note = {
+// Edit note functionality add
+  if(editNoteId){
+    const editNoteIndex = notes.findIndex(note=> note.id === editNoteId);
+    if(editNoteIndex !== -1){
+      notes[editNoteIndex] = {
+        id:editNoteId,
+        title:title,
+        content:content
+      }
+    }
+    editNoteId = null;
+    addBtn.textContent = "Add Note";
+    addBtn.style.backgroundColor = "#c43109";
+  }else{
+    
+      const note = {
     id: Date.now(),
     title: title,
     content: content,
   };
 
   notes.push(note);
+    
+  }
+
   noteTitle.value = "";
   noteContent.value = "";
   displayNoteContent();
 }
 
+
+// notes display function
 function displayNoteContent() {
   notesContainer.innerHTML = "";
 
@@ -34,9 +57,15 @@ function displayNoteContent() {
     const noteElement = document.createElement("div");
     noteElement.className = "note";
     noteElement.innerHTML = `
-          <h3>${note.title}</h3>
-          <p>${note.content}</p>
-          <button class="delete-btn" data-id="${note.id}">Delete</button>
+           <div class="note-header">
+                <h3>${note.title}</h3>
+                
+                <div class="note-buttons">
+                    <button class="edit-btn" data-id="${note.id}">Edit</button>
+                    <button class="delete-btn" data-id="${note.id}">Delete</button>
+                </div>
+            </div>
+            <p>${note.content}</p>
           `;
     notesContainer.appendChild(noteElement);
   });
@@ -54,13 +83,43 @@ function displayNoteContent() {
 //     })
 
   });
+
+
+  document.querySelectorAll('.edit-btn').forEach(button=>{
+  button.addEventListener('click',function(){
+    const id = parseInt(this.getAttribute('data-id'));
+    editNote(id);
+  })
+ });
+ 
 }
 
+// Edit note function 
+function editNote(id){
+ const noteToEdit  = notes.find(note=> note.id === id);
 
+ if(!noteToEdit) return;
+
+ noteTitle.value = noteToEdit.title;
+ noteContent.value = noteToEdit.content;
+
+ editNoteId = id;
+ addBtn.textContent = "Update Note";
+ addBtn.style.backgroundColor = "#4192bb";
+
+ // Go to addNote function and here apply edit not logic
+}
+
+// delete notes function
 function deleteNote(id){
     notes = notes.filter(note=> note.id !== id);
     displayNoteContent();
 }
+
+
+
+
+
 
 
 // allow key to add notes 
