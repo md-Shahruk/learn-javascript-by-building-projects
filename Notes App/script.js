@@ -3,6 +3,18 @@ const noteContent = document.getElementById("note-content");
 const addBtn = document.getElementById("add-note");
 const notesContainer = document.getElementById("notes-container");
 
+const noteCategory = document.getElementById("note-category");
+const newCategory =  document.getElementById("new-category");
+
+// if (newCategory.value.trim() !== '') {
+//         category = newCategory.value.trim().toLowerCase();
+//     }
+
+/*
+** implement edit button
+** implement localstorage
+** note category
+*/
 
 
 let notes = [];
@@ -12,6 +24,12 @@ let editNoteId = null;
 function addNote() {
   const title = noteTitle.value.trim();
   const content = noteContent.value.trim();
+
+  let category = noteCategory.value;
+  if (newCategory.value.trim() !== ''){
+    category = newCategory.value.trim().toLowerCase();
+  }
+
 
   if (title === "" || content === "") {
     alert("Fill up title  and content.");
@@ -25,7 +43,8 @@ function addNote() {
       notes[editNoteIndex] = {
         id:editNoteId,
         title:title,
-        content:content
+        content:content,
+        category:category
       }
     }
     editNoteId = null;
@@ -33,10 +52,11 @@ function addNote() {
     addBtn.style.backgroundColor = "#c43109";
   }else{
     
-      const note = {
+    const note = {
     id: Date.now(),
     title: title,
     content: content,
+    category:category
   };
 
   notes.push(note);
@@ -45,6 +65,7 @@ function addNote() {
 
   noteTitle.value = "";
   noteContent.value = "";
+  noteCategory.value = "work";
   displayNoteContent();
   saveToLocalStorage();
 }
@@ -76,7 +97,9 @@ function displayNoteContent() {
     noteElement.className = "note";
     noteElement.innerHTML = `
            <div class="note-header">
-                <h3>${note.title}</h3>
+                <h3>${note.title} 
+            <span class="category-badge">${note.category}</span>
+        </h3>
                 
                 <div class="note-buttons">
                     <button class="edit-btn" data-id="${note.id}">Edit</button>
@@ -120,6 +143,7 @@ function editNote(id){
 
  noteTitle.value = noteToEdit.title;
  noteContent.value = noteToEdit.content;
+ noteCategory.value = noteToEdit.category;
 
  editNoteId = id;
  addBtn.textContent = "Update Note";

@@ -181,3 +181,30 @@ textarea{
     word-wrap: break-word;
     flex-grow: 1;
 }
+
+
+.note-category {
+    margin-bottom: 15px;
+}
+
+.note-category select,
+.note-category input {
+    width: 200px;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.note-category small {
+    color: #ad6b6b;
+}
+.category-badge {
+   
+    background-color: #718593;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-left: 10px;
+}
