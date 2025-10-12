@@ -46,15 +46,33 @@ function addNote() {
   noteTitle.value = "";
   noteContent.value = "";
   displayNoteContent();
+  saveToLocalStorage();
 }
 
+// write a funciton save notes to local storage
+function saveToLocalStorage(){
+  localStorage.setItem('notesApp', JSON.stringify(notes));
+ // console.log("Notes save to local storage.", notes.length);
+  // now go to delete function and addNote function to call this function 
+}
+
+// load notes from localstorage
+function loadNotesFromLocalStorage(){
+  const savedNotes = localStorage.getItem('notesApp');
+  if(savedNotes){
+    notes = JSON.parse(savedNotes);
+   // console.log("Notes loaded from localStorage.", notes.length);
+    displayNoteContent();
+    // now go to dom content loaded and call this function 
+  }
+}
 
 // notes display function
-function displayNoteContent() {
+function displayNoteContent() {   
   notesContainer.innerHTML = "";
 
   notes.forEach((note) => {
-    const noteElement = document.createElement("div");
+    const noteElement = document.createElement("div"); 
     noteElement.className = "note";
     noteElement.innerHTML = `
            <div class="note-header">
@@ -114,6 +132,7 @@ function editNote(id){
 function deleteNote(id){
     notes = notes.filter(note=> note.id !== id);
     displayNoteContent();
+    saveToLocalStorage();
 }
 
 
@@ -132,4 +151,6 @@ document.addEventListener('DOMContentLoaded', function() {
             addNote();
         }
     });
+
+    loadNotesFromLocalStorage();
 });
