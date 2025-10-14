@@ -36,7 +36,30 @@ a **Simple Countdown Timer** and an **Advanced Countdown Timer**.
 
 
 ---
-## **[2. Quiz App](./Quiz%20App)**
+
+## **[2. Notes APP](./Notes%20App)**
+
+A notes app that allows users to **create, edit, delete, categorize, and search notes** with real-time functionality and local storage. 
+
+### Key Features:
+- **Create, Edit & Delete Notes** - Add, modify and delete notes in real-time
+- **Category Organization** - Organize notes by categories (Work, Personal, Study)
+- **Instant Search** - Search through note titles and content
+- **Local Storage** - Automatically saves notes in browser storage
+- **Date Stamps** - See creation and update timestamps
+- **Responsive Design** - Works on desktop and mobile devices
+- **Keyboard Shortcuts** - Ctrl+Enter for quick note submission 
+
+
+###  Screenshots
+
+<p align="center">
+  <img src="./picture/notes.png" width="50%" />
+  
+</p>
+
+---
+## **[3. Quiz App](./Quiz%20App)**
 
 A interactive Generative AI quiz application that dynamically displays **multiple-choice questions, tracks user scores, and provides instant feedback**  all without any external frameworks.
 
