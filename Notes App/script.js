@@ -6,26 +6,52 @@ const notesContainer = document.getElementById("notes-container");
 const noteCategory = document.getElementById("note-category");
 const newCategory =  document.getElementById("new-category");
 
-// if (newCategory.value.trim() !== '') {
-//         category = newCategory.value.trim().toLowerCase();
-//     }
+const searchInput = document.getElementById("search-notes");
+const clearSearch = document.getElementById("clear-search");
+
+
+
+
+
+
 
 /*
 ** implement edit button
 ** implement localstorage
 ** note category
+** Date Stamps
+** Search note by title or content
 */
 
 
 let notes = [];
 let editNoteId = null;
+let currentSearch = "";
+
+// Search note by title or content
+function searchNotes(search){
+  if(!search.trim()){
+    return notes;
+  }
+
+  const lowerSearchItem = search.toLowerCase();
+
+  return notes.filter(note => 
+    note.title.toLowerCase().includes(lowerSearchItem) || 
+    note.content.toLowerCase().includes(lowerSearchItem)
+  );
+  
+
+}
+
 
 // Add note function
 function addNote() {
   const title = noteTitle.value.trim();
   const content = noteContent.value.trim();
-
   let category = noteCategory.value;
+  const now = new Date();
+
   if (newCategory.value.trim() !== ''){
     category = newCategory.value.trim().toLowerCase();
   }
@@ -44,7 +70,9 @@ function addNote() {
         id:editNoteId,
         title:title,
         content:content,
-        category:category
+        category:category,
+        createAt:notes[editNoteIndex].createAt,
+        updateAt:now
       }
     }
     editNoteId = null;
@@ -56,7 +84,9 @@ function addNote() {
     id: Date.now(),
     title: title,
     content: content,
-    category:category
+    category:category,
+    createAt:now,
+    updateAt:now
   };
 
   notes.push(note);
@@ -66,35 +96,28 @@ function addNote() {
   noteTitle.value = "";
   noteContent.value = "";
   noteCategory.value = "work";
+  category.value = '';
   displayNoteContent();
   saveToLocalStorage();
 }
 
-// write a funciton save notes to local storage
-function saveToLocalStorage(){
-  localStorage.setItem('notesApp', JSON.stringify(notes));
- // console.log("Notes save to local storage.", notes.length);
-  // now go to delete function and addNote function to call this function 
-}
-
-// load notes from localstorage
-function loadNotesFromLocalStorage(){
-  const savedNotes = localStorage.getItem('notesApp');
-  if(savedNotes){
-    notes = JSON.parse(savedNotes);
-   // console.log("Notes loaded from localStorage.", notes.length);
-    displayNoteContent();
-    // now go to dom content loaded and call this function 
-  }
-}
 
 // notes display function
 function displayNoteContent() {   
   notesContainer.innerHTML = "";
+  let filterNotes = notes;
 
-  notes.forEach((note) => {
+  if(currentSearch){
+    filterNotes = searchNotes(currentSearch);
+  }
+
+  filterNotes.forEach((note) => {
     const noteElement = document.createElement("div"); 
     noteElement.className = "note";
+    const createDate =  new Date(note.createAt).toLocaleString();
+    const updateDate = new Date(note.updateAt).toLocaleDateString();
+
+    const noteCharCount = note.content.length;
     noteElement.innerHTML = `
            <div class="note-header">
                 <h3>${note.title} 
@@ -107,6 +130,15 @@ function displayNoteContent() {
                 </div>
             </div>
             <p>${note.content}</p>
+           <div class="note-char-counter">
+                <small> ${noteCharCount}/100</small>
+            </div>
+
+            <div class="note-date">
+                <small>📅 Created: ${createDate}</small>
+                ${note.updateAt !== note.createAt ? 
+                    `<small> | ✏️ Updated: ${updateDate}</small>` : ''}
+            </div>
           `;
     notesContainer.appendChild(noteElement);
   });
@@ -133,6 +165,25 @@ function displayNoteContent() {
   })
  });
  
+} 
+
+
+// write a funciton save notes to local storage
+function saveToLocalStorage(){
+  localStorage.setItem('notesApp', JSON.stringify(notes));
+ // console.log("Notes save to local storage.", notes.length);
+  // now go to delete function and addNote function to call this function 
+}
+
+// load notes from localstorage
+function loadNotesFromLocalStorage(){
+  const savedNotes = localStorage.getItem('notesApp');
+  if(savedNotes){
+    notes = JSON.parse(savedNotes);
+   // console.log("Notes loaded from localStorage.", notes.length);
+    displayNoteContent();
+    // now go to dom content loaded and call this function 
+  }
 }
 
 // Edit note function 
@@ -161,10 +212,6 @@ function deleteNote(id){
 
 
 
-
-
-
-
 // allow key to add notes 
 document.addEventListener('DOMContentLoaded', function() {
     addBtn.addEventListener("click", addNote);
@@ -176,5 +223,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Search notes
+    searchInput.addEventListener('input', function(e){
+       currentSearch =  e.target.value;
+       displayNoteContent();
+    });
+
+    clearSearch.addEventListener('click', function() {
+        searchInput.value = "";
+        currentSearch = "";
+        displayNoteContent();
+    });
+    
+    
+
     loadNotesFromLocalStorage();
+
+    
 });

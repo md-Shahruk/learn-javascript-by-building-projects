@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notes App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div  class="container">
-        <h1 class="header"> Notes App</h1>
-        <div  class="note-taking-page" id="note-taking-page">
-            <div class="note-title">
-                <label for="note-title">Note Title</label>
-                <input type="text" id="note-title" placeholder="Enter note title">
-            </div>
-
-            <div class="note-content">
-                <label for="note-content">Note Content</label>
-                <textarea id="note-content" placeholder="Enter your note here"></textarea>
-            </div>
-            <!-- Category selection -->
-             <div class="note-category">
-                <label for="note-category">
-                    <select  id="note-category">
-                        <option value="work">Work</option>
-                        <option value="personal">Personal</option>
-                        <option value="study">Study</option>
-                    </select>
-                    <small>Or add new: <input type="text" id="new-category" placeholder="New category"> </small>
-                </label>
-             </div>
-             <button id="add-note">Add Note</button>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+     <h1 class="header">Notes App</h1>
+    <div class="container">
+     
+      <div class="note-taking-page" id="note-taking-page">
+        <div class="note-title">
+          <label for="note-title">Note Title</label>
+          <input type="text" id="note-title" placeholder="Enter note title" />
         </div>
 
-        <div class="notes-list" id="notes-container">
-            <!-- Notes will be displayed here -->
+        <div class="note-content">
+          <label for="note-content">Note Content</label>
+          <textarea
+            id="note-content"
+            placeholder="Enter your note here"
+          ></textarea>
         </div>
+        <!-- Category selection -->
+        <div class="note-category">
+          <label for="note-category">
+            <select id="note-category">
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="study">Study</option>
+            </select>
+            <small>Or add new category:</small>
+            <input type="text" id="new-category" placeholder="" />
+          </label>
+        </div>
+        <button id="add-note">Add Note</button>
+        <div class="search-section">
+          <label for="search-notes">Search Notes:</label>
+          <input
+            type="text"
+            id="search-notes"
+            placeholder="Search by title or content..."
+          />
+          <button id="clear-search">Clear</button>
+        </div>
+      </div>
+
+      <div class="notes-list" id="notes-container">
+        <!-- Notes will be display here -->
+      </div>
     </div>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
