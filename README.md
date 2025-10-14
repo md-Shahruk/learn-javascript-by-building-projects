@@ -54,7 +54,7 @@ A notes app that allows users to **create, edit, delete, categorize, and search 
 ###  Screenshots
 
 <p align="center">
-  <img src="./picture/notes.png" width="50%" />
+  <img src="./picture/notes.png" width="90%" />
   
 </p>
 
