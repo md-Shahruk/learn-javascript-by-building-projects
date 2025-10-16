@@ -1,48 +1,4 @@
-let recipes = [
-            {
-                id: 1,
-                title: "Classic Pancakes",
-                description: "Fluffy and delicious pancakes perfect for breakfast.",
-                ingredients: [
-                    "1 cup all-purpose flour",
-                    "2 tablespoons sugar",
-                    "2 teaspoons baking powder",
-                    "1/2 teaspoon salt",
-                    "1 cup milk",
-                    "1 large egg",
-                    "2 tablespoons melted butter"
-                ],
-                instructions: [
-                    "Mix dry ingredients in a bowl",
-                    "In another bowl, mix wet ingredients",
-                    "Combine wet and dry ingredients, stir until just combined",
-                    "Heat a lightly oiled griddle over medium-high heat",
-                    "Pour batter onto the griddle, cook until bubbles form and edges are dry",
-                    "Flip and cook until browned on the other side"
-                ]
-            },
-            {
-                id: 2,
-                title: "Vegetable Stir Fry",
-                description: "Quick and healthy vegetable stir fry with a savory sauce.",
-                ingredients: [
-                    "2 cups mixed vegetables (bell peppers, broccoli, carrots)",
-                    "2 tablespoons vegetable oil",
-                    "2 cloves garlic, minced",
-                    "1 tablespoon soy sauce",
-                    "1 teaspoon sesame oil",
-                    "Salt and pepper to taste"
-                ],
-                instructions: [
-                    "Heat oil in a large pan or wok over high heat",
-                    "Add garlic and stir for 30 seconds",
-                    "Add vegetables and stir fry for 4-5 minutes until crisp-tender",
-                    "Add soy sauce and sesame oil, stir to combine",
-                    "Season with salt and pepper",
-                    "Serve hot with rice or noodles"
-                ]
-            }
-        ];
+ import { recipes } from "./data/recipe_data.js";
 
 /*
 1: Add Recipe Categories
@@ -54,6 +10,7 @@ let recipes = [
 7: Add Meal Planning
 
 */
+
 const recipeList = document.getElementById('recipeList');
 const recipeModal = document.getElementById('recipeModal');
 const recipeDetails = document.getElementById('recipeDetails');
@@ -66,6 +23,33 @@ const recipeForm = document.getElementById('recipeForm');
 const searchInput = document.getElementById('searchInput');
 
 
+
+document.addEventListener('DOMContentLoaded', function(){
+    displayRecipes(recipes);
+    
+    
+    addRecipeBtn.addEventListener('click', function(){
+       addRecipeModal.style.display = 'block';
+    });
+    recipeForm.addEventListener('submit', addNewRecipe);
+
+    closeAddModal.addEventListener('click',function(){
+        addRecipeModal.style.display = 'none';
+    })
+
+     closeModal.addEventListener('click', function() {
+                recipeModal.style.display = 'none';
+            });
+    
+   searchInput.addEventListener('input', function(){
+    searchRecipes(this.value);  
+});
+
+});
+
+
+
+// display recipes function
 function displayRecipes(recipesTodisplay){
     recipeList.innerHTML = '';
 
@@ -88,9 +72,88 @@ function displayRecipes(recipesTodisplay){
         recipeList.appendChild(recipeCard);
     });
 
+    document.querySelectorAll('.view-recipe').forEach(button =>{
+        button.addEventListener('click', function(){
+            const recipeId = parseInt(this.getAttribute('data-id'));
+            showdetails(recipeId);
+
+        });
+    });
+
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-    displayRecipes(recipes);
+// add new recipe function
+function addNewRecipe(event){
+  
+  event.preventDefault();
 
-});
+  // take value from form
+  const title =  document.getElementById('recipeTitle').value;
+  const description = document.getElementById('recipeDescription').value;
+  const ingredients = document.getElementById('recipeIngredients').value.split('\n').filter(line=> line.trim() != '');
+  const instructions = document.getElementById('recipeInstructions').value.split('\n').filter(line=> line.trim() != '');
+
+  if (!title || ! description || ingredients.length === 0 || instructions.length === 0){
+    alert("Fill up all fields");
+    return;
+  } 
+
+  const newRecipe ={
+    id: recipes.length + 1,
+    title: title,
+    description: description,
+    ingredients: ingredients,
+    instructions: instructions,
+  }
+
+  recipes.push(newRecipe);
+
+  displayRecipes(recipes);
+  recipeForm.reset();
+
+  addRecipeModal.style.display = 'none';
+    
+
+  alert('Recipe added successfully!');
+      
+}
+
+//showdetails recipe
+
+function showdetails(recipeId){
+   const recipe = recipes.find(f=> f.id === recipeId);
+   if(!recipe) return;
+
+   recipeDetails.innerHTML = `
+    <h2>${recipe.title}</h2>
+                <p>${recipe.description}</p>
+                
+                <div class="ingredients-list">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="instructions-list">
+                    <h3>Instructions</h3>
+                    <ol>
+                        ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                    </ol>
+                </div>
+   `;
+
+   recipeModal.style.display = 'flex';
+}
+
+function searchRecipes(value) {
+    const filterRecipes = recipes.filter(recipe => 
+        recipe.title.toLowerCase().includes(value.toLowerCase()) ||
+        recipe.description.toLowerCase().includes(value.toLowerCase()) ||
+        recipe.ingredients.some(ingredient => 
+            ingredient.toLowerCase().includes(value.toLowerCase())
+        )
+    );
+    
+    displayRecipes(filterRecipes);
+}
