@@ -184,3 +184,8 @@ textarea {
     background-color: #db5034;
     width: 100%;
 }
+.delete-recipe {
+    margin-top: 10px;
+    background-color: #ed300a;
+    width: 100%;
+}

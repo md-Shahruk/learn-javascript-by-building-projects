@@ -2,7 +2,7 @@
 
 /*
 1: Add Recipe Categories
-2: Implement Recipe Editing
+2: **Implement Recipe Editing
 3: Add Recipe Images
 4: Add Favorites Feature
 5: Add Recipe Ratings
@@ -74,7 +74,8 @@ function displayRecipes(recipesTodisplay){
                 <h3 class="recipe-title">${recipe.title}</h3>
                 <p class="recipe-description">${recipe.description}</p>
                 <button class="view-recipe" data-id="${recipe.id}">View Recipe</button>
-                <button class="edit-recipe" data-id="${recipe.id}">Edit Recipe</button>
+                <button class="edit-recipe" data-id="${recipe.id}">Edit</button>
+                <button class="delete-recipe" data-id="${recipe.id}">Delete</button>
             </div>
         `;
         recipeList.appendChild(recipeCard);
@@ -94,6 +95,29 @@ function displayRecipes(recipesTodisplay){
             editRecipe(editId);
         });
     });
+
+     document.querySelectorAll('.delete-recipe').forEach(button =>{
+        button.addEventListener('click',function(){
+            const deleteId = parseInt(this.getAttribute('data-id'));
+            deleteRecipe(deleteId);
+        });
+    });
+
+}
+
+// Delete Recipe
+
+function deleteRecipe(deleteId){
+
+    if(confirm('Sure you want to delete?')){
+        const recipeIndex = recipes.findIndex(re=> re.id === deleteId);
+        if(recipeIndex !== -1){
+            // splice method array.splice(startIndex, deleteCount, item1, item2, ...)
+            recipes.splice(recipeIndex, 1);
+            displayRecipes(recipes);
+            alert('successfully deleted');
+        }
+    }
 
 }
 
