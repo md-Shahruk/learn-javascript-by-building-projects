@@ -46,9 +46,6 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #d35400;
-}
 
 .recipe-list {
     display: grid;
@@ -71,11 +68,11 @@ button:hover {
 
 .recipe-image {
     height: 150px;
-    background-color: #ddd;
+    background-color: #b4a6a6;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #777;
+    color: #663b3b;
 }
 
 .recipe-content {
@@ -102,6 +99,7 @@ button:hover {
 .view-recipe:hover {
     background-color: #2980b9;
 }
+
 
 .modal {
     display:none;
@@ -179,4 +177,10 @@ textarea {
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+.edit-recipe {
+    margin-top: 10px;
+    background-color: #db5034;
+    width: 100%;
 }

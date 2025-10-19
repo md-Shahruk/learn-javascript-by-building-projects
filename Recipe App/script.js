@@ -23,13 +23,20 @@ const recipeForm = document.getElementById('recipeForm');
 const searchInput = document.getElementById('searchInput');
 
 
-
+let currentEditId = null;
 document.addEventListener('DOMContentLoaded', function(){
     displayRecipes(recipes);
     
     
     addRecipeBtn.addEventListener('click', function(){
-       addRecipeModal.style.display = 'block';
+       recipeForm.reset();
+       const submitButton = recipeForm.querySelector('button[type="submit"]');
+       submitButton.textContent = 'Save Recipe'; 
+        
+         currentEditId = null;
+        addRecipeModal.style.display = 'block';
+
+
     });
     recipeForm.addEventListener('submit', addNewRecipe);
 
@@ -62,11 +69,12 @@ function displayRecipes(recipesTodisplay){
         const recipeCard = document.createElement('div');
         recipeCard.className = 'recipe-card';
         recipeCard.innerHTML = `
-         <div class="recipe-image">Recipe Image</div>
+         <div class="recipe-image">Image</div>
             <div class="recipe-content">
                 <h3 class="recipe-title">${recipe.title}</h3>
                 <p class="recipe-description">${recipe.description}</p>
                 <button class="view-recipe" data-id="${recipe.id}">View Recipe</button>
+                <button class="edit-recipe" data-id="${recipe.id}">Edit Recipe</button>
             </div>
         `;
         recipeList.appendChild(recipeCard);
@@ -80,6 +88,73 @@ function displayRecipes(recipesTodisplay){
         });
     });
 
+    document.querySelectorAll('.edit-recipe').forEach(button =>{
+        button.addEventListener('click',function(){
+            const editId = parseInt(this.getAttribute('data-id'));
+            editRecipe(editId);
+        });
+    });
+
+}
+
+// Edit recipe
+function editRecipe(editId){
+    const recipeEditId = recipes.find(f => f.id === editId );
+    if(!recipeEditId) return;
+
+    document.getElementById('recipeTitle').value = recipeEditId.title;
+    document.getElementById('recipeDescription').value = recipeEditId.description;
+    document.getElementById('recipeIngredients').value = recipeEditId.ingredients.join('\n');
+    document.getElementById('recipeInstructions').value =recipeEditId.instructions.join('\n');
+
+    currentEditId =  editId;
+
+    const submitButton = recipeForm.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Update Recipe';
+
+    addRecipeModal.style.display = 'block';
+
+    recipeForm.removeEventListener('submit', addNewRecipe);
+    recipeForm.addEventListener('submit', updateRecipe);
+
+
+}
+
+function updateRecipe(event){
+   event.preventDefault();
+
+   if(!currentEditId) return;
+
+    const title = document.getElementById('recipeTitle').value;
+    const description = document.getElementById('recipeDescription').value;
+    const ingredients = document.getElementById('recipeIngredients').value.split('\n').filter(line => line.trim() != '');
+    const instructions = document.getElementById('recipeInstructions').value.split('\n').filter(line => line.trim() != '');
+
+    const updateRecipeIndex = recipes.findIndex(re=> re.id === currentEditId);
+
+    if(updateRecipeIndex != -1){
+        recipes[updateRecipeIndex]={
+            ...recipes[updateRecipeIndex],
+            title: title,
+            description:description,
+            ingredients:ingredients,
+            instructions:instructions,
+        }
+    }
+
+    displayRecipes(recipes);
+    recipeForm.reset();
+    addRecipeModal.style.display = 'none';
+
+    const submitButton = recipeForm.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Save Recipe';
+
+    recipeForm.removeEventListener('submit', updateRecipe);
+    recipeForm.addEventListener('submit', addNewRecipe);
+
+    currentEditId = null;
+        
+    alert('Recipe updated successfully!');
 }
 
 // add new recipe function
