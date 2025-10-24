@@ -16,9 +16,9 @@ contactFrom.addEventListener('submit', (e)=>{
 
 // Smooth scrolling
 
-document.querySelectorAll('a[href^="#"').forEach(an =>{
+document.querySelectorAll('a[href^="#"').forEach(ann =>{
    
-    an.addEventListener('click', function(e){
+    ann.addEventListener('click', function(e){
         e.preventDefault();
         const targetId =  this.getAttribute('href');
         if (targetId === '#') return;
