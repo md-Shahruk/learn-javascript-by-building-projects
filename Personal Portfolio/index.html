@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- portfolio header  -->
+     <header>
+        <div class="container header-container">
+            <div class="logo">Sha<span class="logo-span">Ruk</span></div>
+
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+     </header>
+
+     <!-- Hero section -->
+      <section id="home" class="hero">
+       <div>
+        <h1>Hi, I'm Shahruk.</h1>
+       <p>A passionate <strong>Frontend Developer</strong> creating beautiful and functional websites</p> 
+       <a href="#projects" class="btn">View My Work</a>
+       </div>
+      </section>
+    
+
+
+      <!-- About Section  -->
+       <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Shahruk, a frontend developer with a passion for creating intuitive and dynamic user experiences. I specialize in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies and techniques.</p>
+                    <p>With over 1 years of experience in web development, I've worked on various projects ranging from simple landing pages to complex web applications. I believe in writing clean, efficient code and creating designs that are both beautiful and functional.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+                <div class="about-image">
+                    <!-- In a real website, this would be an actual image -->
+                    <!-- <div style="width: 300px; height: 300px; background-color: #3498db; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">Profile Image</div> -->
+                     <div class="profile-image" >
+                        <img src="/picture/pppp.jpg">
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     
+   <!-- Skill Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div style="font-size: 40px; margin-bottom: 20px;">💻</div>
+                    <h3>Frontend Development</h3>
+                    <p>HTML, CSS, JavaScript, React, Responsive Design</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 40px; margin-bottom: 20px;">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Wireframing, Prototyping, User Research, Design Systems</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 40px; margin-bottom: 20px;">⚙️</div>
+                    <h3>Tools & Technologies</h3>
+                    <p>Git, VS Code, Figma, Webpack, npm</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Project Section -->
+     <section id="projects" class="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">Project 1</div>
+                    <div class="project-info">
+                        <h3>E-commerce Website</h3>
+                        <p>A fully responsive e-commerce site with product filtering and cart functionality.</p>
+                        <a href="#" class="btn" style="margin-top: 10px;">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Project 2</div>
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>A drag-and-drop task management application with local storage.</p>
+                        <a href="#" class="btn" style="margin-top: 10px;">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Project 3</div>
+                    <div class="project-info">
+                        <h3>Weather Dashboard</h3>
+                        <p>A weather application that displays current conditions and forecasts.</p>
+                        <a href="#" class="btn" style="margin-top: 10px;">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- contact section -->
+   <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section -->
+     <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p>&copy; 2025 Md. Sharuk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
