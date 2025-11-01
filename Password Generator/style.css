@@ -98,7 +98,7 @@ h1{
 .strength-fill {
     height: 100%;
     width: 0%;
-    transition: width 0.3s, background-color 0.3s;
+    transition: width 0.3s, background-color 0.3s; 
 }
 
 .strength-text {
