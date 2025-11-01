@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Password Generator</h1>
+        <div class="password-display">
+            <div id="password">Here you see password</div>
+            <button id="copy-btn">Copy</button>
+        </div>
+    
+    <div class="settings">
+        <div class="setting">
+            <label for="length">Password length: <span id="length-value">12</span></label>
+            <div class="length-container">
+                <input type="range" id="length" min="4" max="16" value="12">
+            </div>
+        </div>
+
+    <div class="setting">
+        <label >Character Types:</label>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="uppercase" checked>
+                <label for="uppercase">Uppercase (A-Z) </label>
+            </div>
+             <div class="checkbox-item">
+                        <input type="checkbox" id="lowercase" checked>
+                        <label for="lowercase">Lowercase (a-z)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="numbers" checked>
+                        <label for="numbers">Numbers (0-9)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="symbols">
+                        <label for="symbols">Symbols (!@#$...)</label>
+                    </div>
+        </div>
+    </div>
+     <div class="strength-meter">
+            <div class="strength-fill" id="strength-fill"></div>
+            </div>
+            <div class="strength-text" id="strength-text">Password strength: Weak</div>
+            
+            <button id="generate-btn">Generate Password</button>
+    </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
