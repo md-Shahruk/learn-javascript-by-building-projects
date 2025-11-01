@@ -94,16 +94,28 @@ function updatePassword(password){
 }
 
 
-// function copyToclipBoard(){
-//     const 
-// }
+function copyToclipBoard(){
+    const password = passwordElement.textContent;
+
+    if(!password || password === 'select at least one character.'){
+        alert('no password to copy');
+        return;
+    }
+
+    navigator.clipboard.writeText(password)
+    .then(()=> {
+      alert('password copied to clipboard.');
+    })
+    .catch(err =>{
+      alert('failed to copy : ',err);
+    });
+}
 
 
 
 passwordGeneratorBtn.addEventListener('click', passwordgenerator);
 
+copyButton.addEventListener('click', copyToclipBoard);
 
-// document.addEventListener('DOMContentLoaded', function(){
-    
-   
-// });
+
+
