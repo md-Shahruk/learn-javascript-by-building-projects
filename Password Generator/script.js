@@ -1,101 +1,122 @@
 
-const passwordElement = document.getElementById('password');
-const copyButton =  document.getElementById('copy-btn');
-const passwordLength = document.getElementById('length-value');
-const rangeLength = document.getElementById('length');
-const uppercaseCheckBox = document.getElementById('uppercase');
-const lowercaseCheckBox = document.getElementById('lowercase');
-const numbersCheckBox = document.getElementById('numbers');
-const symbolsCheckBox = document.getElementById('symbols');
-const strengthFill = document.getElementById('strength-fill');
-const strengthText = document.getElementById('strength-text');
-const passwordGeneratorBtn = document.getElementById('generate-btn');
+
+class PasswordGeneratorApp{
+    constructor(){
+
+    this.passwordElement = document.getElementById('password');
+    this.copyButton = document.getElementById('copy-btn');
+    this.passwordLength = document.getElementById('length-value');
+    this.rangeLength = document.getElementById('length');
+    this.uppercaseCheckBox = document.getElementById('uppercase');
+    this.lowercaseCheckBox = document.getElementById('lowercase');
+    this.numbersCheckBox = document.getElementById('numbers');
+    this.symbolsCheckBox = document.getElementById('symbols');
+    this.strengthFill = document.getElementById('strength-fill');
+    this.strengthText = document.getElementById('strength-text');
+    this.passwordGeneratorBtn = document.getElementById('generate-btn');
 
 
-// Character sets
-const uppercaseChars = 'ABCDEFGHIJ';
-const lowercaseChars = 'abcdefghij';
-const numberChars = '0123456789';
-const symbolChars = '!@#$%';
+    this.characterSets={
+     uppercaseChars:'ABCDEFGHIJ',
+     lowercaseChars:'abcdefghij',
+     numberChars :'0123456789',
+     symbolChars :'!@#$%',
+    };
 
-// password lenght update
-rangeLength.addEventListener('input',()=>{
-  passwordLength.textContent = rangeLength.value;
-});
+    this.init();
 
+    } // End constructor
 
-// password generator function
-
-function passwordgenerator(){
-
-    let password = '';
-    let allCharacter = '';
-
-    if (uppercaseCheckBox.checked) allCharacter += uppercaseChars;
-    if (lowercaseCheckBox.checked) allCharacter += lowercaseChars;
-    if (numbersCheckBox.checked) allCharacter += numberChars;
-    if (symbolsCheckBox.checked) allCharacter += symbolChars;
-
-   // console.log(allCharacter);
-   
-   if(allCharacter === ''){
-    passwordElement.textContent = 'select at least one character.';
-    return;
-   }
-
-   for (let i = 0; i < parseInt(rangeLength.value); i++){
-    const randomIndex = Math.floor(Math.random() * allCharacter.length);
-    password += allCharacter[randomIndex];
-
-   }
-
-   passwordElement.textContent = password;
-   updatePassword(password);
-}
-
-function updatePassword(password){
-    let stren = 0;
-
-    if (password.length >= 8) stren += 1;
-    if (password.length >= 12) stren += 1;
-    
-    if (password.length >= 14) strength += 1;
-
-    if (/[A-Z]/.test(password)) stren += 1;
-    if (/[a-z]/.test(password)) stren += 1;
-    if (/[0-9]/.test(password)) stren += 1;
-    if (/[^A-Za-z0-9]/.test(password)) stren += 1;
-
-    let strenPercentage = 0;
-    let strenLabel = '';
-    
-    if (stren <= 2) {
-        strenPercentage = 25;
-        strenLabel = 'Weak';
-        strengthFill.style.backgroundColor = '#e74c3c';
-    } else if (stren <= 4) {
-        strenPercentage = 50;
-        strenLabel = 'Fair';
-        strengthFill.style.backgroundColor = '#f39c12';
-    } else if (stren <= 6) {
-        strenPercentage = 75;
-        strenLabel = 'Good';
-        strengthFill.style.backgroundColor = '#3498db';
-    } else {
-        strenPercentage = 100;
-        strenLabel = 'Strong';
-        strengthFill.style.backgroundColor = '#2ecc71';
+    init(){
+        this.rangeLength.addEventListener('input', ()=>this.updatePasswordLenght());
+        this.passwordGeneratorBtn.addEventListener('click', ()=> this.passwordgenerator());
+        this.copyButton.addEventListener('click',()=> this.copyToclipBoard());
     }
 
-    strengthFill.style.width = `${strenPercentage}%`;
-    strengthText.textContent =  `Password strength: ${strenLabel}`;
+    updatePasswordLenght(){
+    this.passwordLength.textContent = this.rangeLength.value;
+    }
 
-   console.log(stren);
+    passwordgenerator(){
+        const password = this.createPassword();
+        this.passwordElement.textContent = password;
+        this.updatePassword(password);
+    }
+
+    createPassword(){
+        let allCharacter = this.getCharCheck();
+
+        if(allCharacter === ''){
+        this.passwordElement.textContent = 'select at least one character.';
+        return '';
+      }
+     
+      let password = '';
+
+       for (let i = 0; i < parseInt(this.rangeLength.value); i++){
+        const randomIndex = Math.floor(Math.random() * allCharacter.length);
+        password += allCharacter[randomIndex];
+
+      }
+
+      return password;
+
+    }
+
+    getCharCheck(){
+        let store = '';
+        
+        if (this.uppercaseCheckBox.checked) store += this.characterSets.uppercaseChars;
+        if (this.lowercaseCheckBox.checked) store += this.characterSets.lowercaseChars;
+        if (this.numbersCheckBox.checked) store += this.characterSets.numberChars;
+        if (this.symbolsCheckBox.checked) store += this.characterSets.symbolChars;
+        return store;
+
+    }
+    
+    updatePassword(password){
+            let stren = 0;
+
+            if (password.length >= 8) stren += 1;
+            if (password.length >= 12) stren += 1;
+            
+            if (password.length >= 14) strength += 1;
+
+            if (/[A-Z]/.test(password)) stren += 1;
+            if (/[a-z]/.test(password)) stren += 1;
+            if (/[0-9]/.test(password)) stren += 1;
+            if (/[^A-Za-z0-9]/.test(password)) stren += 1;
+
+            let strenPercentage = 0;
+            let strenLabel = '';
+            
+            if (stren <= 2) {
+                strenPercentage = 25;
+                strenLabel = 'Weak';
+                this.strengthFill.style.backgroundColor = '#e74c3c';
+            } else if (stren <= 4) {
+                strenPercentage = 50;
+                strenLabel = 'Fair';
+                this.strengthFill.style.backgroundColor = '#f39c12';
+            } else if (stren <= 6) {
+                strenPercentage = 75;
+                strenLabel = 'Good';
+                this.strengthFill.style.backgroundColor = '#3498db';
+            } else {
+                strenPercentage = 100;
+                strenLabel = 'Strong';
+                this.strengthFill.style.backgroundColor = '#2ecc71';
+            }
+
+            this.strengthFill.style.width = `${strenPercentage}%`;
+            this.strengthText.textContent =  `Password strength: ${strenLabel}`;
+
+   //console.log(stren);
 }
 
-
-function copyToclipBoard(){
-    const password = passwordElement.textContent;
+ 
+  copyToclipBoard(){
+    const password = this.passwordElement.textContent;
 
     if(!password || password === 'select at least one character.'){
         alert('no password to copy');
@@ -111,11 +132,10 @@ function copyToclipBoard(){
     });
 }
 
-
-
-passwordGeneratorBtn.addEventListener('click', passwordgenerator);
-
-copyButton.addEventListener('click', copyToclipBoard);
+}
 
 
 
+document.addEventListener('DOMContentLoaded', ()=>{
+   new PasswordGeneratorApp();
+});
