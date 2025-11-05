@@ -14,6 +14,9 @@ class PasswordGeneratorApp{
     this.strengthFill = document.getElementById('strength-fill');
     this.strengthText = document.getElementById('strength-text');
     this.passwordGeneratorBtn = document.getElementById('generate-btn');
+    // dark theme
+    this.toggle = document.getElementById('theme-change');
+    this.body = document.body;
 
 
     this.characterSets={
@@ -31,7 +34,48 @@ class PasswordGeneratorApp{
         this.rangeLength.addEventListener('input', ()=>this.updatePasswordLenght());
         this.passwordGeneratorBtn.addEventListener('click', ()=> this.passwordgenerator());
         this.copyButton.addEventListener('click',()=> this.copyToclipBoard());
+        this.toggle.addEventListener('change', ()=> this.toggleTheme());
+        this.darkTheme();
     }
+
+    // dark theme apply 
+   
+    toggleTheme(){
+     
+     if(this.toggle.checked){
+        this.body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
+     }else{
+        this.body.classList.remove("dark-theme");
+        localStorage.setItem("theme", "light");
+     }
+    }
+
+    darkTheme(){
+        const theme = localStorage.getItem("theme");
+
+        if(theme === "dark"){
+          this.body.classList.add("dark-theme");
+          this.toggle.checked = true;
+        } 
+        else if (theme === "light"){
+          this.body.classList.remove("dark-theme");
+          this.toggle.checked = false;
+        }
+        else{
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches){
+                this.body.classList.add("dark-theme");
+                this.toggle.checked = true;
+                localStorage.setItem("theme", "dark");
+            }else{
+                this.body.classList.remove("dark-theme");
+                this.toggle.checked = false;
+                localStorage.setItem("theme", "light");
+            }
+        }
+    }
+
+    
 
     updatePasswordLenght(){
     this.passwordLength.textContent = this.rangeLength.value;
@@ -80,7 +124,7 @@ class PasswordGeneratorApp{
             if (password.length >= 8) stren += 1;
             if (password.length >= 12) stren += 1;
             
-            if (password.length >= 14) strength += 1;
+            if (password.length >= 14) stren += 1;
 
             if (/[A-Z]/.test(password)) stren += 1;
             if (/[a-z]/.test(password)) stren += 1;
