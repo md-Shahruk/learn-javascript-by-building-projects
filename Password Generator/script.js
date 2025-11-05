@@ -40,7 +40,7 @@ class PasswordGeneratorApp{
 
     // dark theme apply 
    
-    toggleTheme(){
+    toggleTheme() {
      
      if(this.toggle.checked){
         this.body.classList.add("dark-theme");
