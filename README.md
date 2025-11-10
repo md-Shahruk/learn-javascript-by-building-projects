@@ -83,3 +83,29 @@ A interactive Generative AI quiz application that dynamically displays **multipl
   <img src="./picture/quiz03.png" width="40%">
 </p>
 ---
+
+## **[4. Password Generator](./Password%20Generator)**
+A clean and interactive password generator web application that creates secure, customizable passwords with real-time strength feedback.
+
+### Learning Outcomes:
+- ES6 Classes and constructor patterns
+
+- DOM event handling and user input management
+
+- Local Storage API for data persistence
+
+- Clipboard API for copy functionality
+
+- CSS theme switching with JavaScript (Dark , Light)
+
+- Password security assessment algorithms
+
+###  Screenshots
+
+<p align="center">
+  <img src="./picture/pass01.png" width="40%" />
+  <img src="./picture/pass02.png" width="40%" />
+  
+</p>
+
+---
