@@ -63,6 +63,7 @@ A notes app that allows users to **create, edit, delete, categorize, and search 
 
 A interactive Generative AI quiz application that dynamically displays **multiple-choice questions, tracks user scores, and provides instant feedback**  all without any external frameworks.
 
+You can find Live preview here: [Live Preview](https://md-shahruk.github.io/learn-javascript-by-building-projects/Quiz%20App/)
 ###  Key Features:
 - **Modular structure**  questions are imported from a separate file (`data/question.js`)  
 - **Dynamic question & option rendering** using DOM methods (`createElement`, `appendChild`)  
