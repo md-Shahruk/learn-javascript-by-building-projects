@@ -5,7 +5,7 @@ This project includes **two different countdown timer implementations**
 a **Simple Countdown Timer** and an **Advanced Countdown Timer**.
 
 ---
-
+You can find live preview here: [Live](https://md-shahruk.github.io/learn-javascript-by-building-projects/Countdown%20Timer/advanced_countdown_timer/index.html)
 ###  **Simple Countdown Timer**
 ####  Key Features:
 - User can set a **target time** using a datetime input  
