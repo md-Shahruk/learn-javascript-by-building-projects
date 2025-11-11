@@ -1,4 +1,5 @@
 
+import { API_Keys } from "./secret.js";
 
 class WeatherApp{
     constructor(){
@@ -13,7 +14,7 @@ class WeatherApp{
         this.loadingSpin = document.getElementById('loading');
 
 
-        this.apiKey = "17817a30c7f39e8aff26d49b7eab750d";
+        this.apiKey = API_Keys.weather_api;
         this.baseUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 
@@ -44,7 +45,7 @@ class WeatherApp{
                 setTimeout(()=>{
                     this.displayWeatherData(data);
                     this.loadingSpin.style.display = 'none';
-                },3000);
+                },2000);
                 
             }else{
                 alert('city not found');
