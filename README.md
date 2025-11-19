@@ -114,7 +114,7 @@ A clean and interactive password generator web application that creates secure, 
 ## **[5. Weather App](./Weather%20App)**
 A clean and interactive weather application that provides real-time weather information for cities worldwide with a beautiful UI and loading states.
 
-You can find Live preview here: [Live Preview](https://md-shahruk.github.io/learn-javascript-by-building-projects/Weather%20App/)
+You can find Live preview here: [Live Preview](https://md-shahruk.github.io/learn-javascript-by-building-projects/Weather%20App/index.html)
 
 ### Learning Outcomes:
 - Asynchronous API calls with error handling
