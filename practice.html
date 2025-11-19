@@ -1,0 +1,26 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function Car(brand) {
+    // ❌ Without 'new': 
+    // 'this' points to global object (window) or undefined in strict mode
+    // No automatic object creation
+    // No automatic return
+    
+    this.brand = brand;
+    // this.brand = "Toyota" pollutes global scope
+    // Function returns undefined by default
+}
+
+const result = Car("Toyotaaaa"); // ❌ Don't use 'new'
+console.log(result); // undefined
+console.log(brand); // "Toyota" (global pollution!)
+    </script>
+</body>
+</html> -->
