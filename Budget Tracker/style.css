@@ -1,0 +1,112 @@
+:root {
+    --primary: #3498db;
+    --income: #2ecc71;
+    --expense: #e74c3c;
+    --light: #f9f9f9;
+    --dark: #333;
+    --gray: #ecf0f1;
+    --shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+   background-color:#f7f6f6;
+   color: var(--dark);
+   line-height: 1.5;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+header{
+    text-align: center;
+    margin-bottom: 25px;
+}
+h1{
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.summary{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.summary-card{
+    background-color:#f9f9f9;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin:0 10px;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+ .balance {
+    border-left: 4px solid var(--primary);
+}
+
+.income {
+    border-left: 4px solid var(--income);
+}
+
+.expense {
+    border-left: 4px solid var(--expense);
+}
+
+.amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.form-container{
+    background-color:white ;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.form-group{
+    margin-bottom: 15px;
+}
+label{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+input,select{
+    width: 100%;
+    padding: 8px;
+}
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
